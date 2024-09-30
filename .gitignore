@@ -1,0 +1,9 @@
+# Ignore config file with actual API keys
+config.py
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
