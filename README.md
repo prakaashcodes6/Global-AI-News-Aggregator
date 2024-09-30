@@ -1,6 +1,8 @@
 AI Global News Aggregator
 Project Overview
 The AI Global News Aggregator is a Python-based application that fetches global news headlines from various categories, uses AI to generate concise summaries, and presents them through an interactive web interface. This project combines the power of NewsAPI for content retrieval and OpenAI's GPT model for intelligent summarization.
+
+
 Features
 
 Fetch top news headlines from multiple categories
@@ -8,6 +10,21 @@ AI-powered summarization of news articles
 Interactive web interface for easy news browsing
 Support for various news categories (business, entertainment, general, health, science, sports, technology)
 Display of original article links and images
+
+
+## Latest Release
+
+🎉 **Version 1.0.0** has been released! 
+
+This marks our first official release of the AI Global News Aggregator. Key features include:
+
+- Multi-category news fetching
+- AI-powered article summarization
+- Interactive web interface
+- Global news coverage
+
+For full release notes and download, visit the [v1.0.0 release page](https://github.com/prakaashcodes6/Global-AI-News-Aggregator/releases/tag/v1.0.0).
+
 
 Technologies Used
 
