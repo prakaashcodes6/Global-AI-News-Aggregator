@@ -23,7 +23,7 @@ This marks our first official release of the AI Global News Aggregator. Key feat
 - Interactive web interface
 - Global news coverage
 
-For full release notes and download, visit the [v1.0.0 release page](https://github.com/prakaashcodes6/Global-AI-News-Aggregator/releases/tag/v1.0.0).
+For full release notes and download, visit the [v1.0.0 release page](https://github.com/prakaashcodes6/Global-AI-News-Aggregator/releases/tag/v1.0.0). 
 
 
 Technologies Used
