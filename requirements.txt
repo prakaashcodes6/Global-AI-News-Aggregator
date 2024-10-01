@@ -1,3 +1,4 @@
-newsapi-python
+gradio==4.44.0
 openai
-gradio
+newsapi-python
+aiohttp==3.8.3

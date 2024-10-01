@@ -1,101 +1,155 @@
-AI Global News Aggregator
-Project Overview
-The AI Global News Aggregator is a Python-based application that fetches global news headlines from various categories, uses AI to generate concise summaries, and presents them through an interactive web interface. This project combines the power of NewsAPI for content retrieval and OpenAI's GPT model for intelligent summarization.
+---
+title: AI Global News Aggregator
+emoji: 📰
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 4.44.1
+app_file: app.py
+pinned: false
+---
+# AI Global News Aggregator
 
+## Overview
 
-Features
+The `AI Global News Aggregator` is a Python application built using Gradio and leveraging the NewsAPI and OpenAI's GPT-3.5-Turbo models to provide users with AI-generated summaries of global news headlines. This tool allows users to select a news category and receive a list of articles with summaries, sources, and optional images.
 
-Fetch top news headlines from multiple categories
-AI-powered summarization of news articles
-Interactive web interface for easy news browsing
-Support for various news categories (business, entertainment, general, health, science, sports, technology)
-Display of original article links and images
+## Features
 
+- **News Fetching**: Utilizes the NewsAPI to retrieve top headlines from various categories.
+- **Article Summarization**: Uses OpenAI's GPT-3.5-Turbo to generate concise summaries of each article.
+- **User Interface**: Provides an interactive web interface using Gradio where users can select a news category and view the summarized news.
 
-## Latest Release
+## Installation
 
-🎉 **Version 1.0.0** has been released! 
+### Prerequisites
 
-This marks our first official release of the AI Global News Aggregator. Key features include:
+Before running the application, ensure you have the following installed:
 
-- Multi-category news fetching
-- AI-powered article summarization
-- Interactive web interface
-- Global news coverage
+- Python 3.8+
+- Environment variables set for `NEWSAPI_KEY` and `OPENAI_API_KEY`
 
-For full release notes and download, visit the [v1.0.0 release page](https://github.com/prakaashcodes6/Global-AI-News-Aggregator/releases/tag/v1.0.0). 
+### Installation Steps
 
+1. Clone the repository or download the code.
+2. Install the required dependencies by running:
 
-Technologies Used
+```bash
+pip install -r requirements.txt
+```
 
-Python 3.7+
-NewsAPI for fetching news articles
-OpenAI GPT-3.5-turbo for AI summarization
-Gradio for creating the web interface
-Logging for error handling and debugging
+## Usage
 
-Installation
+1. Set the necessary environment variables (`NEWSAPI_KEY` and `OPENAI_API_KEY`) in your system.
+2. Run the application:
 
-Clone the repository:
-Copygit clone https://github.com/prakaashcodes6/Global-AI-News-Aggregator.git
-cd Global-AI-News-Aggregator
+```bash
+python app.py
+```
 
-Install required packages:
-Copypip install -r requirements.txt
+This will start the Gradio interface on your local machine, typically accessible at `http://localhost:7860`.
 
-Set up API keys:
+## Code Explanation
 
-Rename config_template.py to config.py
-Add your NewsAPI and OpenAI API keys to config.py
+### Imports
 
+```python
+import os
+from newsapi import NewsApiClient
+import logging
+from openai import OpenAI
+import gradio as gr
+```
 
+These imports include necessary libraries for interacting with APIs, handling logging, and creating the user interface.
 
-Configuration
-In config.py, add your API keys:
-pythonCopyNEWSAPI_KEY = "your_newsapi_key_here"
-OPENAI_API_KEY = "your_openai_api_key_here"
-Ensure config.py is listed in .gitignore to keep your API keys secure.
-Usage
-Run the application:
-Copypython news_aggregator.py
-The Gradio interface will launch, providing a URL to access the web interface. Select a news category from the dropdown to fetch and summarize the latest news articles.
-Features in Detail
+### Environment Variables
 
-Global News Fetching: Utilizes NewsAPI to retrieve top headlines from various categories.
-AI Summarization: Employs OpenAI's GPT-3.5-turbo model to generate concise summaries of news articles.
-Category-based Filtering: Allows users to select from predefined news categories.
-Error Handling: Implements logging for tracking errors and debugging.
-Responsive Design: Presents news articles with titles, sources, summaries, and images in a clean, readable format.
+```python
+NEWSAPI_KEY = os.environ.get('NEWSAPI_KEY')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+```
 
-Code Structure
+Environment variables are used to store sensitive information such as API keys securely.
 
-fetch_global_headlines(): Retrieves news articles from NewsAPI.
-summarize_article(): Uses OpenAI's API to summarize article content.
-news_aggregator(): Main function that combines fetching and summarization.
-Gradio interface setup for user interaction.
+### Logging Configuration
 
-Customization
+```python
+logging.basicConfig(level=logging.INFO)
+```
 
-Modify the CATEGORIES list to add or remove news categories.
-Adjust the page_size parameter in fetch_global_headlines() to change the number of articles fetched.
-Edit the summarization prompt in summarize_article() to alter the AI's summarization style.
+Sets up basic configuration for logging to capture informational messages.
 
-Future Enhancements
+### Functions
 
-Implement user authentication for personalized news feeds
-Add support for multiple languages
-Incorporate sentiment analysis of news articles
-Develop a feature for saving favorite articles
+#### `fetch_global_headlines`
 
-Contributing
-Contributions to improve the AI Global News Aggregator are welcome. Please feel free to submit pull requests or create issues for bugs and feature requests.
+Retrieves top headlines from the NewsAPI based on the specified category.
 
-License
+#### `summarize_article`
+Generates a summary of a given article text using the OpenAI GPT-3.5-Turbo model.
+#### `news_aggregator`
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Aggregates news articles by fetching headlines and summarizing them. It constructs HTML content for display.
 
-Acknowledgments
+### Categories
 
-NewsAPI for providing access to global news sources
-OpenAI for their powerful GPT model
-Gradio for simplifying the creation of web interfaces for ML models
+```python
+CATEGORIES = [
+    "business", "entertainment", "general", "health",
+    "science", "sports", "technology"
+]
+```
+
+List of predefined news categories.
+
+### Gradio Interface
+
+```python
+iface = gr.Interface(
+    fn=news_aggregator,
+    inputs=gr.Dropdown(choices=CATEGORIES, label="Global News Category"),
+    outputs=gr.HTML(label="Global News Summaries"),
+    title="AI Global News Aggregator",
+    description="Select a category to get AI-summarized global news headlines with links and images."
+)
+iface.launch()
+```
+
+Creates and launches the Gradio interface, allowing users to interact with the application through a web browser.
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests to improve the project.
+
+## License
+
+This project is licensed under the MIT License 
+```
+
+**Current Version**: 1.1.0.0
+
+## Recent Updates (Version 1.1.0.0 - Day 4)
+
+1. **Asynchronous Processing**
+   - Implemented asynchronous API calls using `asyncio` and `aiohttp`.
+   - Improved overall performance by allowing concurrent processing of multiple articles.
+2. **Caching Mechanism**
+   - Added caching for article summaries using `lru_cache`.
+   - Reduces API calls and improves response time for previously summarized articles.
+3. **Enhanced Error Handling**
+   - Improved error logging and handling for both NewsAPI and OpenAI API calls.
+   - More informative error messages for users in case of API failures.
+4. **UI Enhancements**
+   - Updated CSS for a more polished look.
+   - Improved layout of article cards for better readability.
+5. **Performance Optimizations**
+   - Reduced latency in fetching and summarizing articles.
+   - Improved overall responsiveness of the application.
+6. **Prompt Engineering
+   - Refined AI prompts to provide more concise, focused, and informative news article summaries.
+   - System message added to guide the AI for consistent results.
+7. **Testing Improvements
+   - Performed iterative testing to ensure that the prompt engineering and async updates provide consistent results across various articles.
+   - Focused on maintaining quality, relevance, and performance improvements.
+This README provides a comprehensive overview of the application, its features, installation steps, usage instructions, and additional details to help users understand and utilize the `AI Global News Aggregator`.
